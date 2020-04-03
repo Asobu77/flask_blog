@@ -1,0 +1,5 @@
+flask_blog/config.py
+flask_blog/__pycache__/
+
+Pipfile.lock
+hiyoko.code-workspace
