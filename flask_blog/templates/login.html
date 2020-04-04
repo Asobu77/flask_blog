@@ -25,10 +25,16 @@
                 </ul>
             </div>
         </nav>
-        <div>
-            投稿はありません
+        <div class="blog-body">
+            <form method="post" action="/login">
+                <div class="form-group">
+                    <label>ユーザー名<input type="text" class="form-control" name="username"></label>
+                </div>
+                <div class="form-group">
+                    <label>パスワード<input type="password" class="form-control" name="password"></label>
+                </div>
+                <button type ="submit" class ="btn btn-primary">ログイン</button>
+            </form>
         </div>
     </div>
 </body>
-
-</html>
