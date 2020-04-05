@@ -9,9 +9,10 @@ import sys
 
 @app.route('/')
 def show_entries():
-    # セッションがなければログインする
+    # セッションがなければログイン
     if not session.get('logged_in'):
-        return redirect('/login')
+        # メソッド名を入力
+        return redirect(url_for('login'))
 
     return render_template('entries/index.html')
 
@@ -27,7 +28,7 @@ def login():
             # session更新
             session['logged_in'] = True
             flash('ログインしました')
-            return redirect('/')
+            return redirect(url_for('show_entries'))
 
     return render_template('login.html')
 
@@ -36,5 +37,5 @@ def logout():
     # session削除
     session.pop('logged_in', None)
     flash('ログアウトしました')
-    return redirect('/')
+    return redirect(url_for('show_entries'))
 
