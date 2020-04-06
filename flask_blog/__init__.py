@@ -10,5 +10,4 @@ app.config.from_object('flask_blog.config')
 # db
 db = SQLAlchemy(app)
 
-
-import flask_blog.views
+from flask_blog.views import views, entries
