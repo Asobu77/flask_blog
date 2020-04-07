@@ -14,4 +14,7 @@ db = SQLAlchemy(app)
 from flask_blog.views.entries import entry
 app.register_blueprint(entry, url_prefix='/users')
 
-from flask_blog.views import views
+from flask_blog.views.views import view
+app.register_blueprint(view)
+
+
