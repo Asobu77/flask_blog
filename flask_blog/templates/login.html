@@ -2,10 +2,12 @@
 {% block body %}
 <form method="post" action="{{ url_for('view.login') }}">
     <div class="form-group">
-        <label>ユーザー名<input type="text" class="form-control" name="username"></label>
+        <label for="InputEmail">メールアドレス</label>
+        <input type="text" class="form-control" id="InputEmail" name="mail_address">
     </div>
     <div class="form-group">
-        <label>パスワード<input type="password" class="form-control" name="password"></label>
+        <label for="InputPassword">パスワード</label>
+        <input type="password" class="form-control" id="InputPassword" name="password"></label>
     </div>
     <button type ="submit" class ="btn btn-primary">ログイン</button>
 </form>

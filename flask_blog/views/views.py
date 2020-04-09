@@ -3,7 +3,8 @@
 # 必要なパッケージをインポート
 from flask import request, redirect, url_for, render_template, flash, session, Blueprint
 # __init__.pyで作成したappをインポートする
-from flask_blog import app
+from flask_blog import app, db
+from flask_blog.models.users import User
 from functools import wraps
 import sys
 
@@ -19,12 +20,13 @@ def login_required(view):
 
 @view.route('/login', methods=['GET', 'POST'])
 def login():
-    error = None
     if request.method == 'POST':
-        if request.form['username'] != app.config['USERNAME']:
-            flash('ユーザー名が異なります')
-        elif request.form['username'] != app.config['PASSWORD']:
-            flash('パスワードが異なります')
+        login_user = User.query.filter( \
+            User.mail_address == request.form['mail_address'], \
+            User.password == request.form['password'] \
+            ).count()
+        if not login_user:
+            flash('パスワードもしくはメールアドレスが異なります')
         else:
             # session更新
             session['logged_in'] = True

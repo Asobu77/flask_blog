@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block body %}
+<form action="{{ url_for('user.register') }}" method="post" class="add-entry">
+        <div class="form-group">
+            <label for="name">お名前</label>
+            <input type="text" class="form-control" id="name" name="user_name" value="{{ form.user_name | default(NONE) }}">
+        </div>
+        <div class="form-group">
+            <label for="email">メールアドレス</label>
+            <input type="text" class="form-control" id="email" name="mail_address" value="{{ form.mail_address | default(NONE) }}">
+        </div>
+        <div class="form-group">
+            <label for="password">パスワード</label>
+            <input type="password" class="form-control" id="password" name="password" value="{{ form.password | default(NONE) }}">
+        </div>
+        <button type="submit" class="btn btn-primary">登録</button>
+</form>
+{% endblock %}
+

@@ -1,5 +1,6 @@
 flask_blog/config.py
 flask_blog/__pycache__/
+flask_blog/db
 
 Pipfile.lock
 hiyoko.code-workspace
