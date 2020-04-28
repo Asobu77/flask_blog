@@ -1,15 +1,19 @@
 <!doctype html>
 <html>
 <head>
-    <link rel="stylesheet" href="{{ url_for('static', filename ='css/bootstrap.min.css') }}">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename ='css/bootstrap.min.css') }}"> -->
+    <!-- <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename ='css/dashboard.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename ='css/style.css') }}">
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <script type="text/javascript" src="{{ url_for('static', filename ='js/bootstrap.min.js') }}"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+
+    <!-- <script type="text/javascript" src="{{ url_for('static', filename ='js/bootstrap.min.js') }}"></script> -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    <title>Flask Blog</title>
+    <title>Diet!</title>
     <style>
         .jumbotron {
             background:url("{{ url_for('static', filename ='image/background/gero.jpg') }}") center no-repeat;
@@ -19,48 +23,66 @@
 </head>
 
 <body>
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="{{ url_for('entry.show_entries') }}">Flask Blog</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class ="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="nav mr-auto">
-                    {% if not session.logged_in %}
-                    {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('entry.new_entry') }}">新規投稿</a>
-                    </li>
-                    {% endif %}
-                </ul>
-                <i class="fa fa-home fa-2x" aria-hidden="true"></i>
-                <ul class="navbar-nav">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Memu</a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            {% if not session.logged_in %}
-                                <!-- <i class="fa fa-plus" aria-hidden="true"></i> -->
-                                <a class="dropdown-item" href="{{ url_for('user.new') }}">新規登録</a>
-                                <a class="dropdown-item" href="{{ url_for('view.login') }}">ログイン</a>
-                            {% else %}
-                                <a class="dropdown-item" href="{{ url_for('view.logout') }}">ログアウト</a>
-                            {% endif %}
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">管理者ページ</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        {% for message in get_flashed_messages() %}
-        <div class="alert alert-info" role="alert">
-            {{ message }}
+    <nav class="navbar navbar-expand-sm fixed-top flex-md-nowrap shadow navbar-light" style="background-color: lightskyblue;"><!-- navbar-expand-smでレスポンシブデザイン -->
+        <a class="navbar-brand" href="{{ url_for('entry.show_entries') }}">ダイエット倶楽部</a>
+        <div class="collapse navbar-collapse">
+            <ul class="nav mr-auto"></ul>
         </div>
-        {% endfor %}
-        <div class="blog-body">
-            {% block body %}
-            {% endblock %}
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class ="navbar-toggler-icon"></span>
+        </button>
+        <i class="fa fa-home fa-2x" aria-hidden="true"></i>
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">メニュー</a>
+                <div class="dropdown-menu dropdown-menu-right" id="navbarNav">
+                    {% if not session.logged_in %}
+                        <!-- <i class="fa fa-plus" aria-hidden="true"></i> -->
+                        <a class="dropdown-item" href="{{ url_for('user.new') }}">新規登録</a>
+                        <a class="dropdown-item" href="{{ url_for('view.login') }}">ログイン</a>
+                    {% else %}
+                        <a class="dropdown-item" href="{{ url_for('view.logout') }}">ログアウト</a>
+                    {% endif %}
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">管理者ページ</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2 d-none d-block bg-light sidebar" style="padding-top: 65px; position: fixed;">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('entry.show_entries') }}">ダッシュボード</a>
+                        </li>
+                        <li class="nav-item">
+                            <span data-feather="file"></span>
+                            <a class="nav-link" href="{{ url_for('weight.new') }}">体重記録</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('entry.new_entry') }}">新規投稿</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-2">
+                <!-- <一時対応 スペース埋め> -->
+            </div>
+            <main class="col-9" style="padding-top: 65px;">
+                {% for message in get_flashed_messages() %}
+                <div class="alert alert-info" role="alert">
+                    {{ message }}
+                </div>
+                {% endfor %}
+                <div class="blog-body">
+                    {% block body %}
+                    {% endblock %}
+                </div>
+            </main>
+            <div class="col-1">
+            </div>
         </div>
     </div>
 </body>

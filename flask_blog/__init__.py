@@ -20,3 +20,7 @@ app.register_blueprint(view)
 from flask_blog.views.users import user
 app.register_blueprint(user, url_prefix='/user')
 
+from flask_blog.views.weights import weight
+app.register_blueprint(weight, url_prefix='/weight')
+
+

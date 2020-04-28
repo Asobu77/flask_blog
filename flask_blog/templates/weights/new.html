@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block body %}
+<form action="{{ url_for('weight.new') }}" method="post" class="add-entry">
+        <div class="form-group">
+            <label for="date">日付</label>
+            <input type="date" class="form-control" id="date" name="date" value="{{ weights.date | default(NONE) }}">
+        </div>
+        <div class="form-group">
+            <label for="weight">体重</label>
+            <input type="text" class="form-control" id="weight" name="weight" value="{{ weights.weight | default(NONE) }}">
+        </div>
+        <button type="submit" class="btn btn-primary">記録</button>
+</form>
+{% endblock %}
+

@@ -24,12 +24,18 @@ def login():
         login_user = User.query.filter( \
             User.mail_address == request.form['mail_address'], \
             User.password == request.form['password'] \
-            ).count()
+            ).first()
         if not login_user:
             flash('パスワードもしくはメールアドレスが異なります')
         else:
             # session更新
-            session['logged_in'] = True
+            session['logged_in']  = True
+            session['login_user'] = login_user.id
+
+            # 下記はデバックで使用する
+            # session['session_user'] = login_user
+            app.logger.debug(session)
+
             flash('ログインしました')
             return redirect(url_for('entry.show_entries'))
     return render_template('login.html')
