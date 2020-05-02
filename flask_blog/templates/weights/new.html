@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block body %}
-<form action="{{ url_for('weight.new') }}" method="post" class="add-entry">
+<form action="{{ url_for('weight.register') }}" method="post" class="add-entry">
         <div class="form-group">
             <label for="date">日付</label>
             <input type="date" class="form-control" id="date" name="date" value="{{ weights.date | default(NONE) }}">

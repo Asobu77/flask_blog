@@ -14,4 +14,4 @@ class Weight(db.Model):
         self.weight  = weight
 
     def __repr__(self):
-        return '<Entry user_id:{} date:{} weight:{}>'.format(self.user_id, self.date, self.weight)
+        return '<Entry id:{} user_id:{} date:{} weight:{}>'.format(self.id, self.user_id, self.date, self.weight)

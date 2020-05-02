@@ -23,4 +23,5 @@ app.register_blueprint(user, url_prefix='/user')
 from flask_blog.views.weights import weight
 app.register_blueprint(weight, url_prefix='/weight')
 
-
+from flask_blog.views.dashboard import dashboard
+app.register_blueprint(dashboard, url_prefix='/dashboard')

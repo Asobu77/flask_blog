@@ -33,8 +33,7 @@ def login():
             session['login_user'] = login_user.id
 
             # 下記はデバックで使用する
-            # session['session_user'] = login_user
-            app.logger.debug(session)
+            # app.logger.debug(session)
 
             flash('ログインしました')
             return redirect(url_for('entry.show_entries'))

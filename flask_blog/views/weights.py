@@ -7,12 +7,38 @@ from flask_blog import app, db
 from flask_blog.models.weights import Weight
 from flask_blog.views.views import login_required
 
+import datetime
+
 weight = Blueprint('weight', __name__)
 
 @weight.route('/new', methods=['GET'])
 @login_required
 def new():
-    return render_template('weights/new.html', weights = None)
+    defalut = dict(date = datetime.date.today())
+    return render_template('weights/new.html', weights = defalut)
+
+@weight.route('/register', methods=['POST'])
+def register():
+    req_date   = request.form['date']
+    req_weight = request.form['weight']
+
+    if not req_date or not req_weight:
+        flash('全ての項目を記入してください')
+        return render_template('weights/new.html', weights = request.form)
+
+    weight = Weight(
+        user_id = session.get('login_user'),
+        date    = req_date,
+        weight  = req_weight
+    )
+    db.session.add(weight)
+    db.session.commit()
+
+    flash('体重を記録しました')
+    defalut = dict(date = datetime.date.today())
+    return render_template('weights/new.html', weights = defalut)
+
+
 
 # @entry.route('/entries/new', methods=['GET'])
 # @login_required

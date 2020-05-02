@@ -2,7 +2,7 @@
 <html>
 <head>
     <!-- <link rel="stylesheet" href="{{ url_for('static', filename ='css/bootstrap.min.css') }}"> -->
-    <!-- <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"> -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static', filename ='css/dashboard.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename ='css/style.css') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -14,24 +14,18 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <title>Diet!</title>
-    <style>
-        .jumbotron {
-            background:url("{{ url_for('static', filename ='image/background/gero.jpg') }}") center no-repeat;
-            background-size: cover;
-        }
-    </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm fixed-top flex-md-nowrap shadow navbar-light" style="background-color: lightskyblue;"><!-- navbar-expand-smでレスポンシブデザイン -->
-        <a class="navbar-brand" href="{{ url_for('entry.show_entries') }}">ダイエット倶楽部</a>
+    <nav class="navbar navbar-expand-sm fixed-top flex-md-nowrap shadow navbar-dark bg-dark"><!-- navbar-expand-smでレスポンシブデザイン -->
+        <a class="navbar-brand" href="{{ url_for('entry.show_entries') }}">丸見えダイエット</a>
         <div class="collapse navbar-collapse">
             <ul class="nav mr-auto"></ul>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class ="navbar-toggler-icon"></span>
         </button>
-        <i class="fa fa-home fa-2x" aria-hidden="true"></i>
+        <i class="fa fa-home fa-2x" aria-hidden="true" style="color: azure;"></i>
         <ul class="navbar-nav">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">メニュー</a>
@@ -55,8 +49,16 @@
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('entry.show_entries') }}">ダッシュボード</a>
+                            <a class="nav-link" href="{{ url_for('dashboard.top') }}">ダッシュボード</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('entry.show_entries') }}">ブログ</a>
+                        </li>
+                    </ul>
+                    <ul class="nav flex-column">
+                        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                            <span>-Recode-</span>
+                        </h6>
                         <li class="nav-item">
                             <span data-feather="file"></span>
                             <a class="nav-link" href="{{ url_for('weight.new') }}">体重記録</a>
