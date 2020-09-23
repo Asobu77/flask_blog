@@ -1,3 +1,4 @@
+# coding: UTF-8
 # server.py
 from flask_blog import app
 
