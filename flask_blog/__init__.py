@@ -26,3 +26,6 @@ app.register_blueprint(weight, url_prefix='/weight')
 
 from flask_blog.views.dashboard import dashboard
 app.register_blueprint(dashboard, url_prefix='/dashboard')
+
+if __name__ == '__main__':
+    app.run(debug = True)
