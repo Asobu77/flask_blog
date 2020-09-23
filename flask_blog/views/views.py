@@ -29,8 +29,9 @@ def login():
             flash('パスワードもしくはメールアドレスが異なります')
         else:
             # session更新
-            session['logged_in']  = True
-            session['login_user'] = login_user.id
+            session['logged_in']     = True
+            session['login_user_id']   = login_user.id
+            session['login_user_name'] = login_user.user_name
 
             # 下記はデバックで使用する
             # app.logger.debug(session)

@@ -27,7 +27,7 @@ def register():
         return render_template('weights/new.html', weights = request.form)
 
     weight = Weight(
-        user_id = session.get('login_user'),
+        user_id = session.get('login_user_id'),
         date    = req_date,
         weight  = req_weight
     )

@@ -1,6 +1,25 @@
 {% extends "layout.html" %}
 {% block body %}
 <h1>体重グラフ</h1>
+
+<form class="form-inline" action="{{ url_for('dashboard.top') }}" method="GET">
+    <span>期間</span>
+    <div class="form-group">
+      <div class="col-1">
+        <input name="from_date" class="form-control" required type="date" value="{{ period.from_date | safe }}">
+      </div>
+    </div>
+    <span>～</span>
+    <div class="form-group">
+      <div class="col-1">
+        <input name="to_date" class="form-control" required type="date" value="{{ period.to_date | safe }}">
+      </div>
+    </div>
+    <div class="input-group-prepend">
+      <button class="btn btn-success" type="submit">更新</button>
+    </div>
+</form>
+
 <canvas id="myLineChart"></canvas>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
 
@@ -12,7 +31,7 @@ var myLineChart = new Chart(ctx, {
     labels: {{ data.date | tojson }},
     datasets: [
         {
-            label: 'あそぶ',
+            label: {{ data.name | tojson }},
             data: {{ data.weight | tojson}},
             borderColor: "rgba(255,0,0,1)",
             backgroundColor: "rgba(0,0,0,0)",
@@ -28,8 +47,6 @@ var myLineChart = new Chart(ctx, {
     scales: {
       yAxes: [{
         ticks: {
-          suggestedMax: 75,
-          suggestedMin: 60,
           stepSize: 5,
           callback: function(value, index, values){
             return  value +  'kg'
