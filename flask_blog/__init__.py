@@ -1,3 +1,4 @@
+# coding: UTF-8
 # flask_blog/__init__.py
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy

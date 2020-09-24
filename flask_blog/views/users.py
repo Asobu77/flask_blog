@@ -1,3 +1,4 @@
+# coding: UTF-8
 from flask import request, redirect, url_for, render_template, flash, session, Blueprint
 from flask_blog import app, db
 from flask_blog.models.users import User

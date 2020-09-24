@@ -1,3 +1,4 @@
+# coding: UTF-8
 # flask_blog/views.py
 
 # 必要なパッケージをインポート
